@@ -1,0 +1,16 @@
+####### APPEND TO ELASTICSEARCH CONFIGURATION FILE  ########
+echo "node.name: ${node_name}" >> /etc/elasticsearch/elasticsearch.yml
+echo "network.host : ${network_host}" >> /etc/elasticsearch/elasticsearch.yml
+#echo "network.host : 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
+echo "discovery.seed_hosts:" >> /etc/elasticsearch/elasticsearch.yml
+echo " - ${elastic_host_1}" >> /etc/elasticsearch/elasticsearch.yml
+echo " - ${elastic_host_2}" >> /etc/elasticsearch/elasticsearch.yml
+echo " - ${elastic_host_3}" >> /etc/elasticsearch/elasticsearch.yml
+echo "cluster.name: ${cluster_name}" >> /etc/elasticsearch/elasticsearch.yml
+echo "cluster.initial_master_nodes:" >> /etc/elasticsearch/elasticsearch.yml
+echo " - ${master_node}" >> /etc/elasticsearch/elasticsearch.yml
+
+############# APPEND TO JVM CONFIGURATION FILE ####################
+echo "-Xms4g" >> /etc/elasticsearch/jvm.options
+echo "-Xmx4g" >> /etc/elasticsearch/jvm.options
+
