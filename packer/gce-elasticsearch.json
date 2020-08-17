@@ -1,0 +1,36 @@
+{
+  "variables": {
+    "machine_type": "n1-standard-1",
+    "region": "australia-southeast1",
+    "zone": "australia-southeast1-a",
+    "purpose": "elasticsearch-7-8-1",
+    "image_family": "debian-10",
+    "elastic_version" : "7_8_1",
+    "project_id": "Your-GCP-Project-Id"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `project_id`}}",
+      "machine_type": "{{user `machine_type`}}",
+      "source_image_family": "{{user `image_family`}}",
+      "ssh_username": "elastic",
+      "region": "{{user `region`}}",
+      "zone": "{{user `zone`}}",
+      "image_description": "ElasticSearch image with v7.8.1",
+      "disk_size": 40,
+      "disk_type": "pd-ssd",
+      "image_name": "{{user `purpose`}}",
+      "image_family": "elasticsearch-7-8-1",
+      "preemptible": true,
+      "tags": ["{{user `purpose`}}"]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./install_elasticsearch.sh",
+      "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    }
+  ]
+}
