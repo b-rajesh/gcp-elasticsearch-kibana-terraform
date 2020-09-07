@@ -37,7 +37,6 @@ resource "google_compute_instance" "primary-elastic-compute" {
 
   metadata_startup_script = templatefile("./elasticsearch_yml.sh", {
     node_name      = "${random_pet.pet-prefix.id}-${var.master_elastic_node}",
-    network_host   = google_compute_address.elastic_instance_private_ips[0].address,
     elastic_host_1 = google_compute_address.elastic_instance_private_ips[0].address,
     elastic_host_2 = google_compute_address.elastic_instance_private_ips[1].address,
     elastic_host_3 = google_compute_address.elastic_instance_private_ips[2].address,
@@ -73,7 +72,6 @@ resource "google_compute_instance" "secondary-elastic-compute-1" {
 
   metadata_startup_script = templatefile("./elasticsearch_yml.sh", {
     node_name      = "${random_pet.pet-prefix.id}-secondary-elastic-compute-1",
-    network_host   = google_compute_address.elastic_instance_private_ips[1].address,
     elastic_host_1 = google_compute_address.elastic_instance_private_ips[0].address,
     elastic_host_2 = google_compute_address.elastic_instance_private_ips[1].address,
     elastic_host_3 = google_compute_address.elastic_instance_private_ips[2].address,
@@ -109,7 +107,6 @@ resource "google_compute_instance" "secondary-elastic-compute-2" {
 
   metadata_startup_script = templatefile("./elasticsearch_yml.sh", {
     node_name      = "${random_pet.pet-prefix.id}-secondary-elastic-compute_2",
-    network_host   = google_compute_address.elastic_instance_private_ips[2].address,
     elastic_host_1 = google_compute_address.elastic_instance_private_ips[0].address,
     elastic_host_2 = google_compute_address.elastic_instance_private_ips[1].address,
     elastic_host_3 = google_compute_address.elastic_instance_private_ips[2].address,

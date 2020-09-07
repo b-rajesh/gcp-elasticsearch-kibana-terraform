@@ -1,7 +1,6 @@
 ####### APPEND TO ELASTICSEARCH CONFIGURATION FILE  ########
 echo "node.name: ${node_name}" >> /etc/elasticsearch/elasticsearch.yml
-echo "network.host : ${network_host}" >> /etc/elasticsearch/elasticsearch.yml
-#echo "network.host : 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
+echo "network.host : 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
 echo "discovery.seed_hosts:" >> /etc/elasticsearch/elasticsearch.yml
 echo " - ${elastic_host_1}" >> /etc/elasticsearch/elasticsearch.yml
 echo " - ${elastic_host_2}" >> /etc/elasticsearch/elasticsearch.yml
